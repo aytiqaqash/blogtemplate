@@ -35,11 +35,11 @@
 
 ## Install etmə qaydası 
 
-git clone https://github.com/aytiqaqash/blogtemplate.git voyager.local
-composer install
-config .env
-php artisan key:generate
-php artisan voyager:install --with-dummy
+- git clone https://github.com/aytiqaqash/blogtemplate.git voyager.local
+- composer install
+- config .env
+- php artisan key:generate
+- php artisan voyager:install --with-dummy
 
 ## Admin Panelə baxmaq üçün
 
