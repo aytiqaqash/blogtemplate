@@ -8,7 +8,7 @@ use TCG\Voyager\Models\Post;
 class HomeController extends Controller
 {
     public function index(){
-        $posts = Post::orderBy('created_at','desc')->get();
+        $posts = Post::paginate(4);
         return view('home', compact('posts'));
     }
 
