@@ -20,56 +20,64 @@
             <div class="row gx-4 gx-lg-5 justify-content-center">
                 <div class="col-md-10 col-lg-8 col-xl-7">
                     <p>Want to get in touch? Fill out the form below to send me a message and I will get back to you as soon as possible!</p>
-                    <div class="my-5">
-                        <!-- * * * * * * * * * * * * * * *-->
-                        <!-- * * SB Forms Contact Form * *-->
-                        <!-- * * * * * * * * * * * * * * *-->
-                        <!-- This form is pre-integrated with SB Forms.-->
-                        <!-- To make this form functional, sign up at-->
-                        <!-- https://startbootstrap.com/solution/contact-forms-->
-                        <!-- to get an API token!-->
-                        <form id="contactForm" data-sb-form-api-token="API_TOKEN">
-                            <div class="form-floating">
-                                <input class="form-control" id="name" type="text" placeholder="Enter your name..." data-sb-validations="required" />
-                                <label for="name">Name</label>
-                                <div class="invalid-feedback" data-sb-feedback="name:required">A name is required.</div>
+                     <div class="container mt-5">
+                        <!-- Success message -->
+                        @if(Session::has('success'))
+                            <div class="alert alert-success">
+                                {{Session::get('success')}}
                             </div>
-                            <div class="form-floating">
-                                <input class="form-control" id="email" type="email" placeholder="Enter your email..." data-sb-validations="required,email" />
-                                <label for="email">Email address</label>
-                                <div class="invalid-feedback" data-sb-feedback="email:required">An email is required.</div>
-                                <div class="invalid-feedback" data-sb-feedback="email:email">Email is not valid.</div>
+                        @endif
+                        <form action="" method="post" action="{{ route('contact.store') }}">
+                            @csrf
+                            <div class="form-group">
+                                <label>Name</label>
+                                <input type="text" class="form-control {{ $errors->has('name') ? 'error' : '' }}" name="name" id="name">
+                                <!-- Error -->
+                                @if ($errors->has('name'))
+                                    <div class="error">
+                                        {{ $errors->first('name') }}
+                                    </div>
+                                @endif
                             </div>
-                            <div class="form-floating">
-                                <input class="form-control" id="phone" type="tel" placeholder="Enter your phone number..." data-sb-validations="required" />
-                                <label for="phone">Phone Number</label>
-                                <div class="invalid-feedback" data-sb-feedback="phone:required">A phone number is required.</div>
+                            <div class="form-group">
+                                <label>Email</label>
+                                <input type="email" class="form-control {{ $errors->has('email') ? 'error' : '' }}" name="email" id="email">
+                                @if ($errors->has('email'))
+                                    <div class="error">
+                                        {{ $errors->first('email') }}
+                                    </div>
+                                @endif
                             </div>
-                            <div class="form-floating">
-                                <textarea class="form-control" id="message" placeholder="Enter your message here..." style="height: 12rem" data-sb-validations="required"></textarea>
-                                <label for="message">Message</label>
-                                <div class="invalid-feedback" data-sb-feedback="message:required">A message is required.</div>
+                            <div class="form-group">
+                                <label>Phone</label>
+                                <input type="text" class="form-control {{ $errors->has('phone') ? 'error' : '' }}" name="phone" id="phone">
+                                @if ($errors->has('phone'))
+                                    <div class="error">
+                                        {{ $errors->first('phone') }}
+                                    </div>
+                                @endif
                             </div>
-                            <br />
-                            <!-- Submit success message-->
-                            <!---->
-                            <!-- This is what your users will see when the form-->
-                            <!-- has successfully submitted-->
-                            <div class="d-none" id="submitSuccessMessage">
-                                <div class="text-center mb-3">
-                                    <div class="fw-bolder">Form submission successful!</div>
-                                    To activate this form, sign up at
-                                    <br />
-                                    <a href="https://startbootstrap.com/solution/contact-forms">https://startbootstrap.com/solution/contact-forms</a>
-                                </div>
+                            <div class="form-group">
+                                <label>Subject</label>
+                                <input type="text" class="form-control {{ $errors->has('subject') ? 'error' : '' }}" name="subject"
+                                       id="subject">
+                                @if ($errors->has('subject'))
+                                    <div class="error">
+                                        {{ $errors->first('subject') }}
+                                    </div>
+                                @endif
                             </div>
-                            <!-- Submit error message-->
-                            <!---->
-                            <!-- This is what your users will see when there is-->
-                            <!-- an error submitting the form-->
-                            <div class="d-none" id="submitErrorMessage"><div class="text-center text-danger mb-3">Error sending message!</div></div>
-                            <!-- Submit Button-->
-                            <button class="btn btn-primary text-uppercase disabled" id="submitButton" type="submit">Send</button>
+                            <div class="form-group">
+                                <label>Message</label>
+                                <textarea class="form-control {{ $errors->has('message') ? 'error' : '' }}" name="message" id="message"
+                                          rows="4"></textarea>
+                                @if ($errors->has('message'))
+                                    <div class="error">
+                                        {{ $errors->first('message') }}
+                                    </div>
+                                @endif
+                            </div>
+                            <input type="submit" name="send" value="Submit" class="btn btn-dark btn-block">
                         </form>
                     </div>
                 </div>

@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ContactUsFormController;
 use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Route;
 
@@ -16,7 +17,8 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [HomeController::class,'index']);
 Route::get('/about', [HomeController::class,'about']);
-Route::get('/contact', [HomeController::class,'contact']);
+Route::get('/contact', [ContactUsFormController::class, 'createForm']);
+Route::post('/contact', [ContactUsFormController::class, 'ContactUsForm'])->name('contact.store');
 Route::get('/blog/{slug}', [HomeController::class,'post']);
 
 

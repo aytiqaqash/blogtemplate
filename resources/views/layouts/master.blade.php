@@ -23,6 +23,7 @@
 
     <!-- Core theme CSS (includes Bootstrap)-->
     <link href="{{ asset("css/styles.css") }}" rel="stylesheet"/>
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/contactStyle.css') }}">
 </head>
 <body>
 
